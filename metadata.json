@@ -1,0 +1,6 @@
+{
+  "name": "Plant Identifier & Gardening Assistant",
+  "description": "Identificador botânico de plantas por foto com inteligência artificial, diagnósticos de saúde, guias detalhados de cultivo e consultoria com assistente botânica especializada.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
