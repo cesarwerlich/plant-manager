@@ -145,7 +145,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col font-sans pb-16 sm:pb-0">
       {/* Top Navigation */}
       <Navbar
         activeTab={activeTab}
@@ -158,7 +158,7 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Toast Notification */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-xl bg-stone-900 text-white text-sm font-medium shadow-xl border border-stone-700 animate-in fade-in slide-in-from-bottom-2">
+          <div className="fixed bottom-20 sm:bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-xl bg-stone-900 text-white text-sm font-medium shadow-xl border border-stone-700 animate-in fade-in slide-in-from-bottom-2">
             <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>{toastMessage}</span>
           </div>

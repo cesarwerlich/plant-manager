@@ -1,14 +1,23 @@
 import { Sprout, MessageSquareQuote, Flower2, Sparkles, BookOpen, Crown } from 'lucide-react';
 
+type Tab = 'identify' | 'chat' | 'garden';
+
+const TABS = [
+  { id: 'identify', icon: BookOpen, label: 'Identificar & Cuidados', short: 'Identificar' },
+  { id: 'chat', icon: MessageSquareQuote, label: 'Chat Botânico', short: 'Chat' },
+  { id: 'garden', icon: Flower2, label: 'Meu Jardim', short: 'Jardim' },
+] as const;
+
 interface NavbarProps {
-  activeTab: 'identify' | 'chat' | 'garden';
-  setActiveTab: (tab: 'identify' | 'chat' | 'garden') => void;
+  activeTab: Tab;
+  setActiveTab: (tab: Tab) => void;
   gardenCount: number;
   onOpenSubscriptionModal?: () => void;
 }
 
 export function Navbar({ activeTab, setActiveTab, gardenCount, onOpenSubscriptionModal }: NavbarProps) {
   return (
+    <>
     <header id="app-navbar" className="sticky top-0 z-30 bg-stone-900/95 backdrop-blur-md border-b border-stone-800 text-stone-100 shadow-sm pt-safe">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-18">
@@ -33,53 +42,28 @@ export function Navbar({ activeTab, setActiveTab, gardenCount, onOpenSubscriptio
 
           {/* Nav Tabs & iOS Premium Button */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <nav className="flex items-center gap-1 sm:gap-2">
-              <button
-                id="tab-identify"
-                onClick={() => setActiveTab('identify')}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                  activeTab === 'identify'
-                    ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/50'
-                    : 'text-stone-300 hover:text-white hover:bg-stone-800'
-                }`}
-              >
-                <BookOpen className="w-4 h-4" />
-                <span className="hidden md:inline">Identificar &amp; Cuidados</span>
-                <span className="md:hidden">Identificar</span>
-              </button>
-
-              <button
-                id="tab-chat"
-                onClick={() => setActiveTab('chat')}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                  activeTab === 'chat'
-                    ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/50'
-                    : 'text-stone-300 hover:text-white hover:bg-stone-800'
-                }`}
-              >
-                <MessageSquareQuote className="w-4 h-4" />
-                <span className="hidden md:inline">Chat Botânico</span>
-                <span className="md:hidden">Chat</span>
-              </button>
-
-              <button
-                id="tab-garden"
-                onClick={() => setActiveTab('garden')}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                  activeTab === 'garden'
-                    ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/50'
-                    : 'text-stone-300 hover:text-white hover:bg-stone-800'
-                }`}
-              >
-                <Flower2 className="w-4 h-4" />
-                <span className="hidden md:inline">Meu Jardim</span>
-                <span className="md:hidden">Jardim</span>
-                {gardenCount > 0 && (
-                  <span className="ml-0.5 px-1.5 py-0.2 rounded-full text-xs font-semibold bg-emerald-400 text-emerald-950">
-                    {gardenCount}
-                  </span>
-                )}
-              </button>
+            <nav className="hidden sm:flex items-center gap-2">
+              {TABS.map(({ id, icon: Icon, label, short }) => (
+                <button
+                  key={id}
+                  id={`tab-${id}`}
+                  onClick={() => setActiveTab(id)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                    activeTab === id
+                      ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/50'
+                      : 'text-stone-300 hover:text-white hover:bg-stone-800'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span className="hidden md:inline">{label}</span>
+                  <span className="md:hidden">{short}</span>
+                  {id === 'garden' && gardenCount > 0 && (
+                    <span className="ml-0.5 px-1.5 py-0.2 rounded-full text-xs font-semibold bg-emerald-400 text-emerald-950">
+                      {gardenCount}
+                    </span>
+                  )}
+                </button>
+              ))}
             </nav>
 
             {/* iOS Store Premium / Assinatura Modal Button */}
@@ -99,5 +83,32 @@ export function Navbar({ activeTab, setActiveTab, gardenCount, onOpenSubscriptio
         </div>
       </div>
     </header>
+
+    <nav
+      id="app-bottom-tabs"
+      className="sm:hidden fixed bottom-0 inset-x-0 z-30 bg-stone-900/95 backdrop-blur-md border-t border-stone-800 pb-safe"
+    >
+      <div className="flex">
+        {TABS.map(({ id, icon: Icon, short }) => (
+          <button
+            key={id}
+            onClick={() => setActiveTab(id)}
+            aria-current={activeTab === id ? 'page' : undefined}
+            className={`relative flex-1 flex flex-col items-center gap-0.5 py-2 text-[11px] font-medium transition-colors ${
+              activeTab === id ? 'text-emerald-400' : 'text-stone-400'
+            }`}
+          >
+            <Icon className="w-5 h-5" />
+            <span>{short}</span>
+            {id === 'garden' && gardenCount > 0 && (
+              <span className="absolute top-1 left-1/2 ml-1.5 px-1.5 rounded-full text-[10px] font-semibold bg-emerald-400 text-emerald-950">
+                {gardenCount}
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+    </nav>
+    </>
   );
 }
