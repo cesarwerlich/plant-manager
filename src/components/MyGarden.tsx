@@ -231,19 +231,18 @@ export function MyGarden({
         </div>
       )}
 
-      <ConfirmDialog
-        isOpen={plantPendingRemoval !== null}
-        title="Remover planta"
-        message={plantPendingRemoval ? `Deseja remover ${plantPendingRemoval.commonName} do seu jardim?` : ''}
-        confirmLabel="Remover"
-        onConfirm={() => {
-          if (plantPendingRemoval) {
+      {plantPendingRemoval && (
+        <ConfirmDialog
+          title="Remover planta"
+          message={`Deseja remover ${plantPendingRemoval.commonName} do seu jardim?`}
+          confirmLabel="Remover"
+          onConfirm={() => {
             onRemovePlant(plantPendingRemoval.id);
-          }
-          setPlantPendingRemoval(null);
-        }}
-        onCancel={() => setPlantPendingRemoval(null)}
-      />
+            setPlantPendingRemoval(null);
+          }}
+          onCancel={() => setPlantPendingRemoval(null)}
+        />
+      )}
     </div>
   );
 }

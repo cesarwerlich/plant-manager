@@ -439,17 +439,18 @@ export function GardeningChatbot({
         </div>
       </div>
 
-      <ConfirmDialog
-        isOpen={showClearConfirm}
-        title="Limpar conversa"
-        message="Tem certeza de que deseja limpar todo o histórico desta conversa com a Flora?"
-        confirmLabel="Limpar"
-        onConfirm={() => {
-          setMessages([]);
-          setShowClearConfirm(false);
-        }}
-        onCancel={() => setShowClearConfirm(false)}
-      />
+      {showClearConfirm && (
+        <ConfirmDialog
+          title="Limpar conversa"
+          message="Tem certeza de que deseja limpar todo o histórico desta conversa com a Flora?"
+          confirmLabel="Limpar"
+          onConfirm={() => {
+            setMessages([]);
+            setShowClearConfirm(false);
+          }}
+          onCancel={() => setShowClearConfirm(false)}
+        />
+      )}
     </div>
   );
 }

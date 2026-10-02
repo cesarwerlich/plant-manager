@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { AlertTriangle } from 'lucide-react';
 
 interface ConfirmDialogProps {
-  isOpen: boolean;
   title: string;
   message: string;
   confirmLabel?: string;
@@ -12,7 +11,6 @@ interface ConfirmDialogProps {
 }
 
 export function ConfirmDialog({
-  isOpen,
   title,
   message,
   confirmLabel = 'Confirmar',
@@ -20,16 +18,16 @@ export function ConfirmDialog({
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
+  const onCancelRef = useRef(onCancel);
+  onCancelRef.current = onCancel;
+
   useEffect(() => {
-    if (!isOpen) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onCancel();
+      if (e.key === 'Escape') onCancelRef.current();
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen, onCancel]);
-
-  if (!isOpen) return null;
+  }, []);
 
   return (
     <div

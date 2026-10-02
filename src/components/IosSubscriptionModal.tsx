@@ -83,20 +83,6 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
 
         {/* Modal Body */}
         <div className="overflow-y-auto p-6 space-y-5">
-          {notice && (
-            <div className="flex items-start justify-between gap-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs sm:text-sm text-emerald-900">
-              <span>{notice}</span>
-              <button
-                type="button"
-                onClick={() => setNotice(null)}
-                aria-label="Dispensar aviso"
-                className="shrink-0 text-emerald-700 hover:text-emerald-900 cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-
           {activeTab === 'paywall' ? (
             <div className="space-y-5">
               {/* Paywall Banner */}
@@ -174,6 +160,20 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
                   </div>
                 </div>
               </div>
+
+              {notice && (
+                <div className="flex items-start justify-between gap-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs sm:text-sm text-emerald-900">
+                  <span>{notice}</span>
+                  <button
+                    type="button"
+                    onClick={() => setNotice(null)}
+                    aria-label="Dispensar aviso"
+                    className="shrink-0 text-emerald-700 hover:text-emerald-900 cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
 
               {/* Action Button */}
               <button
