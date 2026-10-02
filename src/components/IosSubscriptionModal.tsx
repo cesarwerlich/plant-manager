@@ -19,8 +19,14 @@ interface IosSubscriptionModalProps {
 export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalProps) {
   const [selectedPlan, setSelectedPlan] = useState<'yearly' | 'monthly'>('yearly');
   const [activeTab, setActiveTab] = useState<'paywall' | 'storeGuide'>('paywall');
+  const [notice, setNotice] = useState<string | null>(null);
 
   if (!isOpen) return null;
+
+  const handleClose = () => {
+    setNotice(null);
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
@@ -42,7 +48,7 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
           </div>
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
@@ -155,13 +161,26 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
                 </div>
               </div>
 
+              {notice && (
+                <div className="flex items-start justify-between gap-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs sm:text-sm text-emerald-900">
+                  <span>{notice}</span>
+                  <button
+                    type="button"
+                    onClick={() => setNotice(null)}
+                    aria-label="Dispensar aviso"
+                    className="shrink-0 text-emerald-700 hover:text-emerald-900 cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+
               {/* Action Button */}
               <button
                 type="button"
-                onClick={() => {
-                  alert('Demonstração StoreKit: Em produção no iOS, este botão aciona o Apple In-App Purchase nativo com Touch ID / Face ID.');
-                  onClose();
-                }}
+                onClick={() =>
+                  setNotice('Demonstração StoreKit: Em produção no iOS, este botão aciona o Apple In-App Purchase nativo com Touch ID / Face ID.')
+                }
                 className="w-full py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm sm:text-base transition-all shadow-md shadow-emerald-900/30 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Zap className="w-4 h-4 fill-white" />
@@ -175,7 +194,7 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
                   <span>•</span>
                   <a href="#privacidade" onClick={(e) => e.preventDefault()}>Política de Privacidade</a>
                   <span>•</span>
-                  <a href="#restaurar" onClick={(e) => { e.preventDefault(); alert('Compras restauradas.'); }}>Restaurar Compras</a>
+                  <a href="#restaurar" onClick={(e) => { e.preventDefault(); setNotice('Compras restauradas.'); }}>Restaurar Compras</a>
                 </div>
               </div>
             </div>
@@ -234,7 +253,7 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
           <span>FloraGuia • Otimizado para iOS &amp; Web</span>
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="px-4 py-1.5 rounded-lg bg-stone-200 hover:bg-stone-300 text-stone-800 font-medium transition-colors cursor-pointer"
           >
             Fechar

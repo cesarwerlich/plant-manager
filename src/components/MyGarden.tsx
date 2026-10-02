@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Droplets,
   Flower2,
@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { IdentifiedPlant } from '../types';
 import { SAMPLE_PLANTS } from '../data/samplePlants';
+import { ConfirmDialog } from './ConfirmDialog';
 
 interface MyGardenProps {
   garden: IdentifiedPlant[];
@@ -31,6 +32,8 @@ export function MyGarden({
   onAddSamplePlants,
   onGoToIdentify,
 }: MyGardenProps) {
+  const [plantPendingRemoval, setPlantPendingRemoval] = useState<IdentifiedPlant | null>(null);
+
   const calculateDaysSinceWatered = (lastWateredDate?: string) => {
     if (!lastWateredDate) return null;
     const last = new Date(lastWateredDate);
@@ -127,9 +130,7 @@ export function MyGarden({
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (confirm(`Deseja remover ${plant.commonName} do seu jardim?`)) {
-                              onRemovePlant(plant.id);
-                            }
+                            setPlantPendingRemoval(plant);
                           }}
                           title="Remover do jardim"
                           className="p-1.5 rounded-lg bg-black/40 hover:bg-rose-600 text-stone-200 hover:text-white backdrop-blur-xs transition-colors cursor-pointer"
@@ -228,6 +229,19 @@ export function MyGarden({
             );
           })}
         </div>
+      )}
+
+      {plantPendingRemoval && (
+        <ConfirmDialog
+          title="Remover planta"
+          message={`Deseja remover ${plantPendingRemoval.commonName} do seu jardim?`}
+          confirmLabel="Remover"
+          onConfirm={() => {
+            onRemovePlant(plantPendingRemoval.id);
+            setPlantPendingRemoval(null);
+          }}
+          onCancel={() => setPlantPendingRemoval(null)}
+        />
       )}
     </div>
   );
