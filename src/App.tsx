@@ -12,7 +12,7 @@ import { MyGarden } from './components/MyGarden';
 import { IosSubscriptionModal } from './components/IosSubscriptionModal';
 import { IdentifiedPlant, ChatMessage } from './types';
 import { SAMPLE_PLANTS } from './data/samplePlants';
-import { CheckCircle, ArrowLeft, Smartphone, Crown } from 'lucide-react';
+import { CheckCircle, ArrowLeft } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'identify' | 'chat' | 'garden'>('identify');
@@ -156,34 +156,6 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        {/* iOS Store / PWA Banner */}
-        <div className="mb-6 p-3 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-900 to-stone-900 text-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-              <Smartphone className="w-5 h-5 text-emerald-400" />
-            </div>
-            <div>
-              <div className="font-semibold text-sm sm:text-base flex items-center gap-2">
-                <span>Versão iOS &amp; Publicação na App Store</span>
-                <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40">
-                  Dúvidas Frequentes
-                </span>
-              </div>
-              <p className="text-xs text-stone-300">
-                Saiba tudo sobre taxa da conta Apple (US$ 99/ano), assinaturas no app (StoreKit) e PWA gratuito no iPhone.
-              </p>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={() => setIsIosModalOpen(true)}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-xs self-start sm:self-auto transition-colors cursor-pointer"
-          >
-            <Crown className="w-3.5 h-3.5" />
-            <span>Ver Guia &amp; Assinatura iOS</span>
-          </button>
-        </div>
-
         {/* Toast Notification */}
         {toastMessage && (
           <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-xl bg-stone-900 text-white text-sm font-medium shadow-xl border border-stone-700 animate-in fade-in slide-in-from-bottom-2">
