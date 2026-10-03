@@ -33,7 +33,7 @@ export function Navbar({ activeTab, setActiveTab, gardenCount, onOpenSubscriptio
 
           {/* Nav Tabs & iOS Premium Button */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <nav className="flex items-center gap-1 sm:gap-2">
+            <nav className="hidden sm:flex items-center gap-1 sm:gap-2">
               <button
                 id="tab-identify"
                 onClick={() => setActiveTab('identify')}

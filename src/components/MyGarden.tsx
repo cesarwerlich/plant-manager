@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Droplets,
   Flower2,
@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { IdentifiedPlant } from '../types';
 import { SAMPLE_PLANTS } from '../data/samplePlants';
+import { ConfirmModal } from './ConfirmModal';
 
 interface MyGardenProps {
   garden: IdentifiedPlant[];
@@ -31,6 +32,8 @@ export function MyGarden({
   onAddSamplePlants,
   onGoToIdentify,
 }: MyGardenProps) {
+  const [plantToDelete, setPlantToDelete] = useState<IdentifiedPlant | null>(null);
+
   const calculateDaysSinceWatered = (lastWateredDate?: string) => {
     if (!lastWateredDate) return null;
     const last = new Date(lastWateredDate);
@@ -127,9 +130,7 @@ export function MyGarden({
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (confirm(`Deseja remover ${plant.commonName} do seu jardim?`)) {
-                              onRemovePlant(plant.id);
-                            }
+                            setPlantToDelete(plant);
                           }}
                           title="Remover do jardim"
                           className="p-1.5 rounded-lg bg-black/40 hover:bg-rose-600 text-stone-200 hover:text-white backdrop-blur-xs transition-colors cursor-pointer"
@@ -229,6 +230,23 @@ export function MyGarden({
           })}
         </div>
       )}
+
+      {/* Reusable in-app deletion confirmation modal */}
+      <ConfirmModal
+        isOpen={plantToDelete !== null}
+        title="Remover Planta do Jardim"
+        message={`Tem certeza de que deseja remover "${plantToDelete?.commonName}" do seu jardim? Os dados de rega e notas desta planta serão excluídos.`}
+        confirmText="Sim, Remover"
+        cancelText="Cancelar"
+        variant="danger"
+        onConfirm={() => {
+          if (plantToDelete) {
+            onRemovePlant(plantToDelete.id);
+            setPlantToDelete(null);
+          }
+        }}
+        onCancel={() => setPlantToDelete(null)}
+      />
     </div>
   );
 }

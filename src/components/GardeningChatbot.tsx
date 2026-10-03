@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import Markdown from 'react-markdown';
 import { ChatMessage, IdentifiedPlant, TaskMode } from '../types';
+import { ConfirmModal } from './ConfirmModal';
 
 interface GardeningChatbotProps {
   messages: ChatMessage[];
@@ -36,6 +37,7 @@ export function GardeningChatbot({
   const [isLoading, setIsLoading] = useState(false);
   const [taskMode, setTaskMode] = useState<TaskMode>('general');
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [isConfirmClearOpen, setIsConfirmClearOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -159,9 +161,7 @@ export function GardeningChatbot({
   };
 
   const handleClearChat = () => {
-    if (confirm('Tem certeza de que deseja limpar todo o histórico desta conversa com a Flora?')) {
-      setMessages([]);
-    }
+    setIsConfirmClearOpen(true);
   };
 
   const sampleQuestions = [
@@ -438,6 +438,21 @@ export function GardeningChatbot({
           <span>Pressione Enter para enviar, Shift+Enter para quebra de linha</span>
         </div>
       </div>
+
+      {/* Confirm clear chat modal */}
+      <ConfirmModal
+        isOpen={isConfirmClearOpen}
+        title="Limpar Conversa com a Flora"
+        message="Tem certeza de que deseja limpar todo o histórico desta conversa com a Flora? As mensagens anteriores serão excluídas."
+        confirmText="Limpar Histórico"
+        cancelText="Cancelar"
+        variant="danger"
+        onConfirm={() => {
+          setMessages([]);
+          setIsConfirmClearOpen(false);
+        }}
+        onCancel={() => setIsConfirmClearOpen(false)}
+      />
     </div>
   );
 }

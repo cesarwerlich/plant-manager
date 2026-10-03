@@ -19,8 +19,14 @@ interface IosSubscriptionModalProps {
 export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalProps) {
   const [selectedPlan, setSelectedPlan] = useState<'yearly' | 'monthly'>('yearly');
   const [activeTab, setActiveTab] = useState<'paywall' | 'storeGuide'>('paywall');
+  const [inlineNotice, setInlineNotice] = useState<{ type: 'info' | 'success'; message: string } | null>(null);
 
   if (!isOpen) return null;
+
+  const handleClose = () => {
+    setInlineNotice(null);
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
@@ -42,7 +48,7 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
           </div>
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-stone-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
@@ -155,12 +161,38 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
                 </div>
               </div>
 
+              {/* Inline feedback banner replacing alert dialogs */}
+              {inlineNotice && (
+                <div
+                  role="status"
+                  className={`p-3.5 rounded-xl text-xs flex items-center justify-between gap-2.5 border animate-in fade-in duration-150 ${
+                    inlineNotice.type === 'success'
+                      ? 'bg-emerald-50 text-emerald-950 border-emerald-200'
+                      : 'bg-amber-50 text-amber-950 border-amber-200'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Info className={`w-4 h-4 shrink-0 ${inlineNotice.type === 'success' ? 'text-emerald-700' : 'text-amber-700'}`} />
+                    <span className="leading-snug">{inlineNotice.message}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setInlineNotice(null)}
+                    className="p-1 text-stone-400 hover:text-stone-700 rounded transition-colors shrink-0"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
+
               {/* Action Button */}
               <button
                 type="button"
                 onClick={() => {
-                  alert('Demonstração StoreKit: Em produção no iOS, este botão aciona o Apple In-App Purchase nativo com Touch ID / Face ID.');
-                  onClose();
+                  setInlineNotice({
+                    type: 'info',
+                    message: 'Demonstração StoreKit: Em produção no iOS, este botão aciona o Apple In-App Purchase nativo com Touch ID / Face ID.',
+                  });
                 }}
                 className="w-full py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm sm:text-base transition-all shadow-md shadow-emerald-900/30 flex items-center justify-center gap-2 cursor-pointer"
               >
@@ -175,7 +207,18 @@ export function IosSubscriptionModal({ isOpen, onClose }: IosSubscriptionModalPr
                   <span>•</span>
                   <a href="#privacidade" onClick={(e) => e.preventDefault()}>Política de Privacidade</a>
                   <span>•</span>
-                  <a href="#restaurar" onClick={(e) => { e.preventDefault(); alert('Compras restauradas.'); }}>Restaurar Compras</a>
+                  <a
+                    href="#restaurar"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setInlineNotice({
+                        type: 'success',
+                        message: 'Demonstração StoreKit: Compras anteriores verificadas e restauradas com sucesso.',
+                      });
+                    }}
+                  >
+                    Restaurar Compras
+                  </a>
                 </div>
               </div>
             </div>
