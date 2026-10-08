@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Identity Canvas — Plant Care Ecosystem (Mobile & Web)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+            'space': ['Space Grotesk', 'sans-serif'],
+            'fraunces': ['Fraunces', 'serif'],
+            'cormorant': ['Cormorant Garamond', 'serif'],
+            'outfit': ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            // Direction 1: Modern Botanical Tech
+            tech: {
+              chlorophyll: '#00F59B',
+              mint: '#10E590',
+              deep: '#062013',
+              dark: '#08140D',
+              surface: '#0F291B',
+              vapor: '#F2FBF6',
+              gray: '#789586',
+              border: '#1B402C',
+            },
+            // Direction 2: Urban Jungle & Lifestyle
+            urban: {
+              terracotta: '#C0583A',
+              clay: '#D46B4E',
+              linen: '#F6F2EB',
+              parchment: '#EDE6DA',
+              olive: '#374538',
+              sage: '#859681',
+              umber: '#221D18',
+              border: '#DDD4C5',
+            },
+            // Direction 3: Friendly & Organic
+            organic: {
+              sprout: '#16A34A',
+              dew: '#E6F7ED',
+              sunbeam: '#FBBF24',
+              earth: '#28211A',
+              peach: '#FB923C',
+              cloud: '#F8FAFC',
+              border: '#CFE7D8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(150, 150, 150, 0.3); border-radius: 999px; }
+    
+    .squircle-ios {
+      border-radius: 22.37%;
+    }
+    .iphone-frame {
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4), 0 0 0 10px #1e2022, 0 0 0 12px #34373a;
+      border-radius: 46px;
+    }
+    .desktop-frame {
+      box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0,0,0,0.08);
+      border-radius: 14px;
+    }
+  </style>
+</head>
+<body class="bg-stone-100 text-stone-900 font-jakarta antialiased min-h-screen transition-colors duration-300">
+
+  <!-- TOP STICKY MASTER TOOLBAR -->
+  <header class="sticky top-0 z-50 bg-stone-900/95 text-white backdrop-blur-md border-b border-stone-800 px-4 sm:px-8 py-3.5 shadow-md">
+    <div class="max-w-[1800px] mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-base">
+          🌿
+        </div>
+        <div>
+          <h1 class="font-bold text-sm sm:text-base tracking-tight flex items-center gap-2">
+            <span>Plant Care Brand Identity Canvas</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase font-semibold">
+              Mobile &amp; Web Exploration
+            </span>
+          </h1>
+          <p class="text-xs text-stone-400 hidden sm:block">Mercado Brasileiro • 3 Direções Conceituais Distintas • Design Canvas Lado a Lado</p>
+        </div>
+      </div>
+
+      <!-- VIEW MODE SWITCHER -->
+      <div class="flex items-center gap-2 bg-stone-800/90 p-1 rounded-xl border border-stone-700/80 text-xs">
+        <button onclick="setViewMode('all')" id="btn-view-all" class="px-3 py-1.5 rounded-lg font-medium transition-all bg-emerald-600 text-white shadow-xs">
+          Comparativo Lado a Lado (3 Colunas)
+        </button>
+        <button onclick="setViewMode('tech')" id="btn-view-tech" class="px-3 py-1.5 rounded-lg font-medium text-stone-300 hover:text-white transition-all">
+          1. Botanical Tech
+        </button>
+        <button onclick="setViewMode('urban')" id="btn-view-urban" class="px-3 py-1.5 rounded-lg font-medium text-stone-300 hover:text-white transition-all">
+          2. Urban Lifestyle
+        </button>
+        <button onclick="setViewMode('organic')" id="btn-view-organic" class="px-3 py-1.5 rounded-lg font-medium text-stone-300 hover:text-white transition-all">
+          3. Friendly &amp; Organic
+        </button>
+      </div>
+
+      <!-- SECTION JUMP LINKS -->
+      <div class="hidden lg:flex items-center gap-3 text-xs text-stone-400">
+        <a href="#section-naming" class="hover:text-emerald-400 transition-colors">Naming</a>
+        <span>•</span>
+        <a href="#section-identity" class="hover:text-emerald-400 transition-colors">Identidade &amp; Ícones</a>
+        <span>•</span>
+        <a href="#section-mobile" class="hover:text-emerald-400 transition-colors">Mobile (iPhone)</a>
+        <span>•</span>
+        <a href="#section-web" class="hover:text-emerald-400 transition-colors">Web (Desktop 1440px)</a>
+        <span>•</span>
+        <a href="#section-systems" class="hover:text-emerald-400 transition-colors">UI System</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1800px] mx-auto px-4 sm:px-8 py-8 space-y-16">
+
+    <!-- EXECUTIVE SUMMARY HERO -->
+    <section class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-sm relative overflow-hidden">
+      <div class="max-w-4xl space-y-3">
+        <span class="text-xs uppercase tracking-wider font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+          Briefing de Redesign &amp; Naming Oficial
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
+          Superando o v1 clínico: A evolução para um ecossistema moderno de jardinagem inteligente
+        </h2>
+        <p class="text-sm text-stone-600 leading-relaxed">
+          O primeiro protótipo errou ao adotar uma estética "farmacêutica/hospitalar" (cruz médica, Dr. Garden, postura de emergência clínica). A jardinagem urbana para o público de 25 a 45 anos é sobre <strong>conexão, estética de interiores, rituais de bem-estar e precisão tecnológica</strong>. As três propostas abaixo rompem categoricamente com a "folha genérica no quadrado" e criam <strong>metáforas visuais proprietárias</strong> sustentáveis em iOS e Web desktop.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 1: PRODUCT NAMING MATRIX -->
+    <section id="section-naming" class="space-y-6">
+      <div class="border-b border-stone-200 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold text-stone-400 uppercase tracking-widest">Capítulo 01</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-stone-900">Estratégia &amp; Decisão de Naming</h3>
+        </div>
+        <p class="text-xs text-stone-500 max-w-md">Critérios: bilíngue (PT-BR + EN), ≤10 caracteres (sem reticências no iOS), fonética natural no Brasil e disponibilidade marcária.</p>
+      </div>
+
+      <!-- Evaluation Table -->
+      <div class="bg-white rounded-2xl border border-stone-200 overflow-x-auto shadow-sm">
+        <table class="w-full text-left text-xs text-stone-700">
+          <thead class="bg-stone-50 text-stone-500 uppercase text-[11px] font-semibold border-b border-stone-200">
+            <tr>
+              <th class="p-4">Candidato</th>
+              <th class="p-4">Tamanho</th>
+              <th class="p-4">Pronúncia BR</th>
+              <th class="p-4">Apelo Internacional</th>
+              <th class="p-4">Domínios &amp; Registro</th>
+              <th class="p-4">Veredito do Designer</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-100">
+            <tr class="bg-emerald-50/60 font-medium">
+              <td class="p-4">
+                <span class="font-extrabold text-sm text-emerald-900">1. Brota</span>
+                <span class="ml-2 px-2 py-0.5 rounded-full text-[10px] bg-emerald-200 text-emerald-950 font-bold">Top Pick Geral</span>
+              </td>
+              <td class="p-4">5 letras (36px)</td>
+              <td class="p-4 text-emerald-800">Perfeita (Verbo ativo: brotar, prosperar, viver)</td>
+              <td class="p-4 text-emerald-800">Excelente (Bisílabo moderno: Strava, Oura, Canva)</td>
+              <td class="p-4">brota.app • brota.garden • brota.com.br</td>
+              <td class="p-4 font-semibold text-emerald-900">A mais forte e potente para app store e dia a dia.</td>
+            </tr>
+            <tr class="bg-stone-50/40">
+              <td class="p-4">
+                <span class="font-bold text-sm text-stone-900">2. Folio</span>
+                <span class="ml-2 px-2 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-900 font-bold">Top Pick Lifestyle</span>
+              </td>
+              <td class="p-4">5 letras (38px)</td>
+              <td class="p-4">Sofisticada (Raiz botânica *folium* + portfólio de vasos)</td>
+              <td class="p-4">Imediata e luxuosa globalmente</td>
+              <td class="p-4">folio.garden • foliobotany.com</td>
+              <td class="p-4">Ideal se a direção escolhida for Urban Jungle &amp; Lifestyle.</td>
+            </tr>
+            <tr>
+              <td class="p-4">
+                <span class="font-bold text-sm text-stone-900">3. Verdeia</span>
+              </td>
+              <td class="p-4">7 letras (49px)</td>
+              <td class="p-4">Poética ("tornar-se verde, encher de vida")</td>
+              <td class="p-4 text-stone-500">Média (soará exótica em inglês)</td>
+              <td class="p-4">verdeia.app • verdeia.com.br</td>
+              <td class="p-4">Muito afetiva para o Brasil; menos global.</td>
+            </tr>
+            <tr class="text-stone-400 bg-stone-50/20">
+              <td class="p-4">FloraGuia</td>
+              <td class="p-4">9 letras</td>
+              <td class="p-4">Soa a guia impresso dos anos 2000</td>
+              <td class="p-4">Ruim ("Guia" é truncado em EN)</td>
+              <td class="p-4">Comum demais</td>
+              <td class="p-4 text-rose-600 font-medium">Descartar (antiquado e longo).</td>
+            </tr>
+            <tr class="text-stone-400 bg-stone-50/20">
+              <td class="p-4">Dr. Garden</td>
+              <td class="p-4">9 letras</td>
+              <td class="p-4">Associação imediata a remédio/doença</td>
+              <td class="p-4">Clichê genérico</td>
+              <td class="p-4">Conflito com clínicas</td>
+              <td class="p-4 text-rose-600 font-medium">Descartar (v1 falho).</td>
+            </tr>
+            <tr class="text-stone-400 bg-stone-50/20">
+              <td class="p-4">Sprout / Verdant</td>
+              <td class="p-4">6-7 letras</td>
+              <td class="p-4">Difícil ("Isprouti", "Vérdãnt")</td>
+              <td class="p-4">Hiper-saturado em tech</td>
+              <td class="p-4">Registros bloqueados</td>
+              <td class="p-4 text-rose-600 font-medium">Descartar (pouco proprietário no BR).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Recommendation Callout -->
+      <div class="p-4 rounded-2xl bg-emerald-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/30 flex items-center justify-center text-xl font-bold">🎯</div>
+          <div>
+            <div class="font-bold text-sm">Veredito do Naming: Adotar "Brota" (ou "Folio" para a linha editorial)</div>
+            <p class="text-xs text-emerald-200">Encaixa com perfeição na dock do iOS sem quebrar linha, vira verbo ("já brotou hoje?") e tem registro viável.</p>
+          </div>
+        </div>
+        <div class="text-xs bg-emerald-800 px-3 py-1.5 rounded-lg border border-emerald-700 whitespace-nowrap font-mono">
+          iOS icon label: "Brota" (5 chars)
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE 3 CREATIVE DIRECTIONS — SIDE BY SIDE CANVAS -->
+    <div id="directions-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- ========================================================================= -->
+      <!-- DIRECTION 1: MODERN BOTANICAL TECH                                        -->
+      <!-- ========================================================================= -->
+      <article id="col-tech" class="direction-column bg-stone-900 text-white rounded-3xl p-6 sm:p-7 border border-stone-800 shadow-xl space-y-12">
+        
+        <!-- Header & Core Rationale -->
+        <div class="space-y-3 border-b border-stone-800 pb-6">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-950/80 border border-emerald-800/80">
+              Direção 01 • Tech Precision
+            </span>
+            <span class="text-xs text-stone-400 font-mono">v2.1-tech</span>
+          </div>
+          <h4 class="text-2xl font-bold font-space text-white tracking-tight">
+            Modern Botanical Tech
+          </h4>
+          <p class="text-xs text-stone-300 leading-relaxed font-jakarta">
+            <strong>Metáfora central:</strong> <em>"O diafragma da fotossíntese"</em> — ótica de visão computacional de altíssima precisão combinada com a vascularização matemática das folhas.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-2 text-[11px]">
+            <span class="bg-stone-800 px-2.5 py-1 rounded-md text-stone-300">Apple Design Award vibe</span>
+            <span class="bg-stone-800 px-2.5 py-1 rounded-md text-stone-300">Glassmorphism sutil</span>
+            <span class="bg-stone-800 px-2.5 py-1 rounded-md text-stone-300">Linework cirúrgico</span>
+          </div>
+        </div>
+
+        <!-- 1. IDENTIDADE: ÍCONE IOS, ANDROID, HOME SCREEN & WORDMARK -->
+        <div class="space-y-6">
+          <div class="text-xs font-mono text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+            <span>01</span> • <span>Símbolo, Ícone &amp; Favicon</span>
+          </div>
+
+          <!-- Master App Icon 1024px & Adaptive -->
+          <div class="bg-stone-950 p-5 rounded-2xl border border-stone-800/90 flex flex-col items-center justify-center gap-4">
+            <!-- SVG iOS 1024 Icon Vector -->
+            <div class="relative group">
+              <svg class="w-32 h-32 squircle-ios shadow-2xl transition-transform group-hover:scale-105 duration-300" viewBox="0 0 512 512" fill="none">
+                <!-- Deep Obsidian Gradient Base -->
+                <rect width="512" height="512" rx="114" fill="url(#tech-bg-grad)" />
+                <!-- Subtle Optical Aperture Reticle Grid -->
+                <circle cx="256" cy="256" r="180" stroke="#00F59B" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="6 6" />
+                <circle cx="256" cy="256" r="120" stroke="#00F59B" stroke-opacity="0.2" stroke-width="2" />
+                <!-- Center Botanical Lens Geometry: Interlocking Chlorophyll Arcs forming Leaf + Sensor Focus -->
+                <path d="M 256 96 C 344 96 416 168 416 256 C 416 344 344 416 256 416 C 256 320 280 256 256 160 C 232 256 256 320 256 416 C 168 416 96 344 96 256 C 96 168 168 96 256 96 Z" fill="url(#tech-chlorophyll-grad)" opacity="0.9" />
+                <!-- Precision Vascular Center Ray & Target Reticle -->
+                <path d="M 256 120 L 256 392" stroke="#08140D" stroke-width="8" stroke-linecap="round" />
+                <circle cx="256" cy="256" r="14" fill="#00F59B" />
+                <circle cx="256" cy="256" r="6" fill="#08140D" />
+                <!-- Linear Tech Coordinate Tick Marks -->
+                <line x1="256" y1="40" x2="256" y2="60" stroke="#00F59B" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                <line x1="256" y1="452" x2="256" y2="472" stroke="#00F59B" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                <line x1="40" y1="256" x2="60" y2="256" stroke="#00F59B" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                <line x1="452" y1="256" x2="472" y2="256" stroke="#00F59B" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                <defs>
+                  <linearGradient id="tech-bg-grad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#0E2317" />
+                    <stop offset="1" stop-color="#050C08" />
+                  </linearGradient>
+                  <linearGradient id="tech-chlorophyll-grad" x1="120" y1="120" x2="380" y2="380" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#00F59B" />
+                    <stop offset="1" stop-color="#0AA468" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span class="text-[10px] text-stone-400 text-center block mt-2 font-mono">iOS Master (1024px squircle)</span>
+            </div>
+
+            <!-- Home Screen Context (60px) + Settings (29px) + Browser Tab Favicon -->
+            <div class="grid grid-cols-3 gap-3 w-full pt-3 border-t border-stone-800 text-center">
+              <div>
+                <div class="w-12 h-12 mx-auto rounded-xl bg-stone-900 border border-stone-700/80 p-1 flex items-center justify-center shadow-md">
+                  <div class="w-10 h-10 rounded-lg bg-[#0E2317] flex items-center justify-center text-emerald-400 font-bold text-xs">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#00F59B" stroke-width="2">
+                      <circle cx="12" cy="12" r="8" stroke-dasharray="2 2"/>
+                      <path d="M12 4c4 4 4 12 0 16-4-4-4-12 0-16z" fill="#00F59B" fill-opacity="0.2"/>
+                      <circle cx="12" cy="12" r="2" fill="#00F59B"/>
+                    </svg>
+                  </div>
+                </div>
+                <span class="text-[10px] text-stone-400 mt-1 block">Home 60px</span>
+              </div>
+
+              <div>
+                <div class="w-8 h-8 mx-auto rounded-md bg-[#0E2317] border border-emerald-500/40 flex items-center justify-center">
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#00F59B]"></div>
+                </div>
+                <span class="text-[10px] text-stone-400 mt-1 block">Ajustes 29px</span>
+              </div>
+
+              <div>
+                <div class="h-8 bg-stone-800 rounded px-2 flex items-center gap-1.5 border border-stone-700 text-[10px] text-stone-300 truncate">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#00F59B]"></span>
+                  <span class="truncate">Brota • Tab</span>
+                </div>
+                <span class="text-[10px] text-stone-400 mt-1 block">Favicon 16/32px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wordmark & Lockups -->
+          <div class="space-y-3 bg-stone-950 p-4 rounded-2xl border border-stone-800">
+            <span class="text-[10px] font-mono text-stone-400 block uppercase">Wordmark &amp; Lockups</span>
+            <!-- Horizontal Lockup -->
+            <div class="p-3 bg-stone-900 rounded-xl flex items-center justify-between border border-stone-800">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center">
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#00F59B]"></div>
+                </div>
+                <span class="font-space font-bold tracking-tight text-lg text-white">brota<span class="text-emerald-400 font-mono text-xs ml-1">.ai</span></span>
+              </div>
+              <span class="text-[10px] font-mono text-stone-500">Horizontal (Web Header)</span>
+            </div>
+            <!-- Stacked Lockup -->
+            <div class="p-3 bg-stone-900 rounded-xl flex items-center justify-between border border-stone-800">
+              <div class="text-center">
+                <div class="w-6 h-6 mx-auto rounded-lg bg-[#00F59B] mb-1"></div>
+                <span class="font-space font-bold text-xs tracking-wider uppercase block text-white">BROTA</span>
+                <span class="font-mono text-[9px] text-emerald-400">PRECISION BOTANY</span>
+              </div>
+              <span class="text-[10px] font-mono text-stone-500">Stacked Lockup</span>
+            </div>
+          </div>
+
+          <!-- Color System (Light & Dark) -->
+          <div class="space-y-2">
+            <span class="text-[10px] font-mono text-emerald-400 block uppercase">Paleta de Cores &amp; Tokens</span>
+            <div class="grid grid-cols-5 gap-1.5 text-center text-[10px] font-mono">
+              <div class="p-2 rounded-lg bg-[#00F59B] text-stone-950 font-bold">
+                #00F59B
+                <span class="block font-sans text-[9px] opacity-80">Chlorophyll</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#08140D] border border-stone-700 text-white font-bold">
+                #08140D
+                <span class="block font-sans text-[9px] text-stone-400">Obsidian</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#143322] text-emerald-300 font-bold">
+                #143322
+                <span class="block font-sans text-[9px] opacity-80">Cypress</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#F2FBF6] text-stone-900 font-bold">
+                #F2FBF6
+                <span class="block font-sans text-[9px] opacity-80">Vapor (Lt)</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#FFB020] text-stone-950 font-bold">
+                #FFB020
+                <span class="block font-sans text-[9px] opacity-80">Sun Amber</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typography Pairing -->
+          <div class="bg-stone-950 p-4 rounded-2xl border border-stone-800 space-y-2">
+            <span class="text-[10px] font-mono text-emerald-400 uppercase block">Tipografia: Space Grotesk + Plus Jakarta Sans</span>
+            <div class="space-y-1">
+              <div class="font-space text-lg font-bold tracking-tight text-white">Costela-de-adão · 98% de vigor</div>
+              <p class="font-jakarta text-xs text-stone-300">Regar em 2 dias · Luz indireta brilhante (3.200 lux) · Umidade do ar em 64%.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MOBILE APP (IPHONE FRAME) — 3 SCREENS -->
+        <div class="space-y-6 pt-4 border-t border-stone-800">
+          <div class="text-xs font-mono text-emerald-400 uppercase tracking-wider flex items-center justify-between">
+            <span>02 • Telas Mobile (iOS)</span>
+            <span class="text-[10px] text-stone-400">3 fluxos essenciais</span>
+          </div>
+
+          <!-- Screen A: Camera Scan with AI Aperture -->
+          <div class="bg-stone-950 p-4 rounded-3xl border border-stone-800/80">
+            <span class="text-[11px] font-semibold text-emerald-400 block mb-2 font-mono">Tela A: Scan de Câmera &amp; Visão Computacional</span>
+            <div class="w-full max-w-[280px] mx-auto bg-[#08140D] rounded-[36px] p-3 text-white border-4 border-stone-800 shadow-2xl space-y-3 relative overflow-hidden">
+              <!-- Dynamic Island -->
+              <div class="w-20 h-4 bg-black rounded-full mx-auto mb-2"></div>
+              
+              <!-- Camera Viewfinder -->
+              <div class="h-64 rounded-2xl bg-stone-900 relative overflow-hidden flex items-center justify-center border border-emerald-500/30">
+                <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover opacity-70">
+                <!-- Optical Target Box -->
+                <div class="absolute inset-6 border border-emerald-400/50 rounded-xl flex items-center justify-center">
+                  <div class="w-8 h-8 border-t-2 border-l-2 border-emerald-400 absolute top-0 left-0"></div>
+                  <div class="w-8 h-8 border-t-2 border-r-2 border-emerald-400 absolute top-0 right-0"></div>
+                  <div class="w-8 h-8 border-b-2 border-l-2 border-emerald-400 absolute bottom-0 left-0"></div>
+                  <div class="w-8 h-8 border-b-2 border-r-2 border-emerald-400 absolute bottom-0 right-0"></div>
+                  <div class="w-3 h-3 rounded-full bg-[#00F59B] animate-ping"></div>
+                </div>
+                <!-- Instant Diagnosis Pill -->
+                <div class="absolute bottom-3 inset-x-3 bg-stone-950/85 backdrop-blur-md p-2.5 rounded-xl border border-emerald-500/40 text-[11px]">
+                  <div class="flex items-center justify-between font-mono text-[#00F59B]">
+                    <span>ANALISANDO ESPÉCIME</span>
+                    <span>99.4%</span>
+                  </div>
+                  <div class="font-bold text-white text-xs mt-0.5">Monstera deliciosa (Costela-de-adão)</div>
+                  <div class="text-[10px] text-stone-300">Folhagem turgida • Sem pragas detectadas</div>
+                </div>
+              </div>
+
+              <!-- Shutter Controls -->
+              <div class="flex items-center justify-around py-1">
+                <span class="text-xs text-stone-400 font-mono">Auto-Focus</span>
+                <div class="w-12 h-12 rounded-full border-2 border-[#00F59B] p-1 flex items-center justify-center">
+                  <div class="w-9 h-9 rounded-full bg-[#00F59B]"></div>
+                </div>
+                <span class="text-xs text-stone-400 font-mono">Macro</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen B: Plant Detail Card -->
+          <div class="bg-stone-950 p-4 rounded-3xl border border-stone-800/80">
+            <span class="text-[11px] font-semibold text-emerald-400 block mb-2 font-mono">Tela B: Cartão de Espécime &amp; Métricas</span>
+            <div class="w-full max-w-[280px] mx-auto bg-[#08140D] rounded-[36px] p-3.5 text-white border-4 border-stone-800 shadow-2xl space-y-3">
+              <div class="flex justify-between items-center text-xs text-stone-400">
+                <span>← Voltar</span>
+                <span class="font-mono text-emerald-400">ID: #082</span>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400">Araceae • Vaso Sala</span>
+                <h5 class="text-lg font-bold font-space text-white">Costela-de-adão</h5>
+                <p class="text-xs text-stone-400 italic">Monstera deliciosa Liebm.</p>
+              </div>
+
+              <!-- Sensor Gauges Grid -->
+              <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                <div class="p-2.5 rounded-xl bg-[#143322] border border-emerald-500/30">
+                  <span class="text-stone-400 block text-[10px]">Próxima Rega</span>
+                  <span class="text-[#00F59B] font-bold text-xs">Em 2 dias 💧</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-[#143322] border border-emerald-500/30">
+                  <span class="text-stone-400 block text-[10px]">Índice de Luz</span>
+                  <span class="text-white font-bold text-xs">Ótimo (3.4klx)</span>
+                </div>
+              </div>
+
+              <button class="w-full py-2.5 rounded-xl bg-[#00F59B] text-stone-950 font-bold text-xs font-mono transition-transform active:scale-95">
+                REGISTRAR REGA HOJE
+              </button>
+            </div>
+          </div>
+
+          <!-- Screen C: Home Collection List -->
+          <div class="bg-stone-950 p-4 rounded-3xl border border-stone-800/80">
+            <span class="text-[11px] font-semibold text-emerald-400 block mb-2 font-mono">Tela C: Lista "Meus Vasos" &amp; Alerta</span>
+            <div class="w-full max-w-[280px] mx-auto bg-[#08140D] rounded-[36px] p-3.5 text-white border-4 border-stone-800 shadow-2xl space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="font-space font-bold text-sm">Meus Vasos (12)</span>
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/40">2 pendentes</span>
+              </div>
+              <!-- Plant Item 1 -->
+              <div class="p-2.5 rounded-xl bg-stone-900 border border-stone-800 flex items-center justify-between text-xs">
+                <div>
+                  <div class="font-bold text-white">Jiboia Dourada</div>
+                  <div class="text-[10px] text-amber-400">⚠️ Folhas amarelas detectadas</div>
+                </div>
+                <span class="text-[10px] text-stone-400 font-mono">Hoje</span>
+              </div>
+              <!-- Plant Item 2 -->
+              <div class="p-2.5 rounded-xl bg-stone-900 border border-stone-800 flex items-center justify-between text-xs">
+                <div>
+                  <div class="font-bold text-white">Costela-de-adão</div>
+                  <div class="text-[10px] text-emerald-400">Saudável • Rega em 2d</div>
+                </div>
+                <span class="text-[10px] text-stone-400 font-mono">10 Out</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. WEB APP (1440PX DESKTOP FRAME & TABLET) -->
+        <div class="space-y-4 pt-4 border-t border-stone-800">
+          <div class="text-xs font-mono text-emerald-400 uppercase tracking-wider">
+            <span>03 • Web App (Dashboard Desktop &amp; Detalhes)</span>
+          </div>
+
+          <!-- Desktop Dashboard Screen A -->
+          <div class="bg-stone-950 p-4 rounded-2xl border border-stone-800 space-y-2">
+            <span class="text-[11px] text-stone-300 font-mono block">Dashboard 1440px: Barra Lateral Tech + Grid de Vasos + Assistente</span>
+            <div class="desktop-frame bg-[#08140D] border border-stone-800 text-white p-3 rounded-xl space-y-2.5">
+              <!-- Browser Header -->
+              <div class="flex items-center gap-2 border-b border-stone-800 pb-2">
+                <div class="flex gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                </div>
+                <div class="text-[10px] font-mono text-stone-400 bg-stone-900 px-3 py-0.5 rounded-md mx-auto">app.brota.ai/dashboard</div>
+              </div>
+
+              <!-- App UI Simulation -->
+              <div class="grid grid-cols-12 gap-2 text-xs">
+                <!-- Sidebar -->
+                <div class="col-span-3 bg-stone-900/80 p-2.5 rounded-lg border border-stone-800 space-y-2 font-mono text-[11px]">
+                  <div class="font-bold text-[#00F59B] flex items-center gap-1.5 font-space">
+                    <span class="w-2 h-2 rounded-full bg-[#00F59B]"></span> BROTA OS
+                  </div>
+                  <div class="space-y-1 text-stone-300">
+                    <div class="bg-emerald-950 text-[#00F59B] p-1.5 rounded">🌿 Minha Coleção</div>
+                    <div class="p-1.5">💧 Agenda de Regas</div>
+                    <div class="p-1.5">🔬 Diagnóstico IA</div>
+                    <div class="p-1.5">💬 Assistente Flora</div>
+                  </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-span-9 space-y-2">
+                  <div class="flex justify-between items-center bg-stone-900/60 p-2 rounded-lg border border-stone-800">
+                    <span class="font-space font-bold text-xs">Coleção Botânica (14 Espécies)</span>
+                    <button class="bg-[#00F59B] text-stone-950 font-bold px-2 py-1 rounded text-[10px] font-mono">+ Escanear Planta</button>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div class="p-2.5 rounded-lg bg-stone-900/90 border border-emerald-500/30">
+                      <div class="font-bold text-xs">Costela-de-adão</div>
+                      <div class="text-[10px] text-emerald-400">Rega em 2 dias • Sala</div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-stone-900/90 border border-amber-500/30">
+                      <div class="font-bold text-xs">Ficus Lyrata</div>
+                      <div class="text-[10px] text-amber-400">Regar Hoje! • Varanda</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RATIONALE & RISKS -->
+        <div class="p-4 rounded-2xl bg-stone-950 border border-stone-800 text-xs space-y-2">
+          <div class="font-mono text-emerald-400 uppercase text-[10px]">Análise Estratégica do Designer</div>
+          <p class="text-stone-300"><strong>Linha de Raciocínio:</strong> Comunica autoridade científica e inteligência artificial de ponta sem recorrer ao jaleco médico.</p>
+          <p class="text-rose-400"><strong>Principal Risco:</strong> Pode parecer excessivamente frio/tecnológico para usuários mais velhos que buscam aconchego afetivo.</p>
+          <p class="text-emerald-300"><strong>Quando escolher:</strong> Se o posicionamento da empresa priorizar a precisão da IA de visão computacional e o apelo ao público urbano tech-savvy (programadores, designers, arquitetos).</p>
+        </div>
+      </article>
+
+
+      <!-- ========================================================================= -->
+      <!-- DIRECTION 2: URBAN JUNGLE & LIFESTYLE                                    -->
+      <!-- ========================================================================= -->
+      <article id="col-urban" class="direction-column bg-[#F6F2EB] text-[#221D18] rounded-3xl p-6 sm:p-7 border border-[#DDD4C5] shadow-xl space-y-12">
+        
+        <!-- Header & Core Rationale -->
+        <div class="space-y-3 border-b border-[#DDD4C5] pb-6">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-serif uppercase tracking-widest text-[#C0583A] px-2.5 py-0.5 rounded-md bg-[#EDE6DA] border border-[#DDD4C5]">
+              Direção 02 • Editorial Lifestyle
+            </span>
+            <span class="text-xs text-stone-500 font-serif italic">Kinfolk Edition</span>
+          </div>
+          <h4 class="text-2xl font-bold font-fraunces text-[#221D18] tracking-tight">
+            Urban Jungle &amp; Lifestyle
+          </h4>
+          <p class="text-xs text-[#374538] leading-relaxed font-jakarta">
+            <strong>Metáfora central:</strong> <em>"Uma monografia botânica viva"</em> — seus vasos tratados como esculturas vivas, cerâmicas artesanais e curadoria de interiores.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-2 text-[11px]">
+            <span class="bg-[#EDE6DA] px-2.5 py-1 rounded-md text-[#374538]">Revista Kinfolk / Cereal</span>
+            <span class="bg-[#EDE6DA] px-2.5 py-1 rounded-md text-[#374538]">Terracota e Linho cru</span>
+            <span class="bg-[#EDE6DA] px-2.5 py-1 rounded-md text-[#374538]">Tipografia de Herbaria</span>
+          </div>
+        </div>
+
+        <!-- 1. IDENTIDADE: ÍCONE IOS, ANDROID, HOME SCREEN & WORDMARK -->
+        <div class="space-y-6">
+          <div class="text-xs font-serif text-[#C0583A] uppercase tracking-wider flex items-center gap-2">
+            <span>01</span> • <span>Símbolo &amp; Monograma Escultural</span>
+          </div>
+
+          <!-- Master App Icon 1024px & Adaptive -->
+          <div class="bg-white p-5 rounded-2xl border border-[#DDD4C5] flex flex-col items-center justify-center gap-4 shadow-sm">
+            <!-- SVG iOS 1024 Icon Vector -->
+            <div class="relative group">
+              <svg class="w-32 h-32 squircle-ios shadow-xl transition-transform group-hover:scale-105 duration-300" viewBox="0 0 512 512" fill="none">
+                <!-- Warm Raw Terracotta / Ceramic Clay Background -->
+                <rect width="512" height="512" rx="114" fill="url(#urban-bg-grad)" />
+                <!-- Sculptural Architectural Vase Contour & Botanical Monogram 'F' / 'B' -->
+                <path d="M 256 100 C 310 100 350 140 350 190 C 350 250 280 270 280 340 L 320 340 C 330 340 340 350 340 360 C 340 370 330 380 320 380 L 192 380 C 182 380 172 370 172 360 C 172 350 182 340 192 340 L 232 340 C 232 270 162 250 162 190 C 162 140 202 100 256 100 Z" fill="#F6F2EB" />
+                <!-- Minimal Single Continuous Botanical Branch Emerging from Clay Vase -->
+                <path d="M 256 140 Q 256 220 256 340" stroke="#374538" stroke-width="8" stroke-linecap="round" />
+                <path d="M 256 200 Q 290 180 310 195 Q 290 220 256 210" fill="#859681" />
+                <path d="M 256 240 Q 220 220 200 235 Q 220 260 256 250" fill="#859681" />
+                <defs>
+                  <linearGradient id="urban-bg-grad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#C0583A" />
+                    <stop offset="1" stop-color="#9E4126" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span class="text-[10px] text-stone-500 text-center block mt-2 font-serif">iOS Master (1024px Terracotta Vase)</span>
+            </div>
+
+            <!-- Home Screen Context (60px) + Settings (29px) + Browser Tab Favicon -->
+            <div class="grid grid-cols-3 gap-3 w-full pt-3 border-t border-[#DDD4C5] text-center">
+              <div>
+                <div class="w-12 h-12 mx-auto rounded-xl bg-[#EDE6DA] border border-[#DDD4C5] p-1 flex items-center justify-center shadow-xs">
+                  <div class="w-10 h-10 rounded-lg bg-[#C0583A] flex items-center justify-center text-[#F6F2EB] font-serif font-bold text-sm">
+                    F
+                  </div>
+                </div>
+                <span class="text-[10px] text-stone-600 mt-1 block">Home 60px</span>
+              </div>
+
+              <div>
+                <div class="w-8 h-8 mx-auto rounded-md bg-[#C0583A] border border-amber-900/30 flex items-center justify-center">
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#F6F2EB]"></div>
+                </div>
+                <span class="text-[10px] text-stone-600 mt-1 block">Ajustes 29px</span>
+              </div>
+
+              <div>
+                <div class="h-8 bg-[#EDE6DA] rounded px-2 flex items-center gap-1.5 border border-[#DDD4C5] text-[10px] text-stone-700 truncate">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#C0583A]"></span>
+                  <span class="truncate">Folio • Curadoria</span>
+                </div>
+                <span class="text-[10px] text-stone-600 mt-1 block">Favicon 16/32px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wordmark & Lockups -->
+          <div class="space-y-3 bg-white p-4 rounded-2xl border border-[#DDD4C5]">
+            <span class="text-[10px] font-serif uppercase tracking-widest text-[#C0583A] block">Wordmark &amp; Tipografia Editorial</span>
+            <!-- Horizontal Lockup -->
+            <div class="p-3 bg-[#F6F2EB] rounded-xl flex items-center justify-between border border-[#DDD4C5]">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-[#C0583A] text-white flex items-center justify-center font-serif text-xs font-bold">
+                  F
+                </div>
+                <span class="font-fraunces font-bold text-xl tracking-tight text-[#221D18]">folio<span class="font-serif italic font-normal text-xs text-[#C0583A] ml-1.5">botanica</span></span>
+              </div>
+              <span class="text-[10px] font-serif text-stone-500">Horizontal</span>
+            </div>
+          </div>
+
+          <!-- Color System (Light & Dark) -->
+          <div class="space-y-2">
+            <span class="text-[10px] font-serif uppercase tracking-widest text-[#C0583A] block">Paleta de Cores Orgânicas</span>
+            <div class="grid grid-cols-5 gap-1.5 text-center text-[10px] font-mono">
+              <div class="p-2 rounded-lg bg-[#C0583A] text-white font-bold">
+                #C0583A
+                <span class="block font-sans text-[9px] opacity-80">Terracotta</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#F6F2EB] border border-[#DDD4C5] text-[#221D18] font-bold">
+                #F6F2EB
+                <span class="block font-sans text-[9px] text-stone-500">Linen</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#374538] text-white font-bold">
+                #374538
+                <span class="block font-sans text-[9px] opacity-80">Olive Ink</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#859681] text-white font-bold">
+                #859681
+                <span class="block font-sans text-[9px] opacity-80">Sage Leaf</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#221D18] text-stone-200 font-bold">
+                #221D18
+                <span class="block font-sans text-[9px] opacity-80">Soil Umber</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typography Pairing -->
+          <div class="bg-white p-4 rounded-2xl border border-[#DDD4C5] space-y-2">
+            <span class="text-[10px] font-serif uppercase tracking-widest text-[#C0583A] block">Tipografia: Fraunces / Cormorant + Plus Jakarta Sans</span>
+            <div class="space-y-1">
+              <div class="font-fraunces text-xl font-bold tracking-tight text-[#221D18]">Monstera deliciosa · Vaso Cerâmica Terracota</div>
+              <p class="font-jakarta text-xs text-[#374538]">Aprecia substrato bem drenado, casca de pinus e rega quando os primeiros 3cm de solo estiverem secos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MOBILE APP (IPHONE FRAME) — 3 SCREENS -->
+        <div class="space-y-6 pt-4 border-t border-[#DDD4C5]">
+          <div class="text-xs font-serif text-[#C0583A] uppercase tracking-wider flex items-center justify-between">
+            <span>02 • Telas Mobile (iOS)</span>
+            <span class="text-[10px] text-stone-500">3 fluxos essenciais</span>
+          </div>
+
+          <!-- Screen A: Camera Scan with AI Viewfinder -->
+          <div class="bg-white p-4 rounded-3xl border border-[#DDD4C5]">
+            <span class="text-[11px] font-serif font-bold text-[#C0583A] block mb-2">Tela A: Identificação &amp; Análise de Luminosidade</span>
+            <div class="w-full max-w-[280px] mx-auto bg-[#F6F2EB] rounded-[36px] p-3 text-[#221D18] border-4 border-[#DDD4C5] shadow-xl space-y-3 relative overflow-hidden">
+              <div class="w-20 h-4 bg-stone-900 rounded-full mx-auto mb-2"></div>
+              
+              <div class="h-64 rounded-2xl bg-stone-100 relative overflow-hidden flex items-center justify-center border border-[#DDD4C5]">
+                <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                <!-- Archival Specimen Label -->
+                <div class="absolute bottom-3 inset-x-3 bg-white/95 backdrop-blur-sm p-3 rounded-xl border border-[#DDD4C5] shadow-sm text-xs space-y-1">
+                  <div class="text-[10px] uppercase tracking-widest font-serif text-[#C0583A]">Espécime Encontrado</div>
+                  <div class="font-fraunces font-bold text-sm text-[#221D18]">Costela-de-adão</div>
+                  <div class="text-[11px] text-stone-600">Família Araceae • Ambiente ideal: Sala com meia-luz</div>
+                </div>
+              </div>
+
+              <div class="text-center py-1">
+                <button class="w-full py-2.5 rounded-xl bg-[#C0583A] text-white font-serif font-bold text-xs shadow-xs">
+                  Adicionar ao Meu Herbário
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen B: Plant Detail Card -->
+          <div class="bg-white p-4 rounded-3xl border border-[#DDD4C5]">
+            <span class="text-[11px] font-serif font-bold text-[#C0583A] block mb-2">Tela B: Ficha Botânica &amp; Ritual de Rega</span>
+            <div class="w-full max-w-[280px] mx-auto bg-[#F6F2EB] rounded-[36px] p-3.5 text-[#221D18] border-4 border-[#DDD4C5] shadow-xl space-y-3">
+              <div class="flex justify-between items-center text-xs text-stone-500 font-serif">
+                <span>← Galeria</span>
+                <span>Vaso 04</span>
+              </div>
+              <div>
+                <span class="text-[10px] font-serif uppercase tracking-widest text-[#C0583A]">Espécie Doméstica</span>
+                <h5 class="text-xl font-bold font-fraunces text-[#221D18]">Costela-de-adão</h5>
+                <p class="text-xs text-stone-500 italic">Monstera deliciosa</p>
+              </div>
+
+              <!-- Care Card -->
+              <div class="p-3 rounded-2xl bg-white border border-[#DDD4C5] space-y-2 text-xs">
+                <div class="flex items-center justify-between border-b border-stone-100 pb-2">
+                  <span class="text-stone-500">Próxima rega</span>
+                  <span class="font-bold text-[#C0583A]">Quinta-feira (em 2 dias)</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-stone-500">Vaso recomendado</span>
+                  <span class="font-medium text-[#374538]">Barro cozido 28cm</span>
+                </div>
+              </div>
+
+              <button class="w-full py-2.5 rounded-xl bg-[#374538] text-white font-serif font-bold text-xs">
+                Marcar Rega Efetuada
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. WEB APP (1440PX DESKTOP FRAME) -->
+        <div class="space-y-4 pt-4 border-t border-[#DDD4C5]">
+          <div class="text-xs font-serif text-[#C0583A] uppercase tracking-wider">
+            <span>03 • Web App (Editorial Dashboard)</span>
+          </div>
+
+          <div class="bg-white p-4 rounded-2xl border border-[#DDD4C5] space-y-2">
+            <span class="text-[11px] text-stone-500 font-serif block">Dashboard 1440px: Curadoria de Vasos em Grid Editorial</span>
+            <div class="desktop-frame bg-[#F6F2EB] border border-[#DDD4C5] text-[#221D18] p-3 rounded-xl space-y-2.5">
+              <div class="flex items-center gap-2 border-b border-[#DDD4C5] pb-2">
+                <div class="flex gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-stone-300"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-stone-300"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-stone-300"></div>
+                </div>
+                <div class="text-[10px] font-serif text-stone-500 bg-white px-3 py-0.5 rounded-md mx-auto">folio.garden/monografia</div>
+              </div>
+
+              <div class="grid grid-cols-12 gap-2 text-xs">
+                <div class="col-span-3 bg-white p-2.5 rounded-lg border border-[#DDD4C5] space-y-2 font-serif text-[11px]">
+                  <div class="font-bold text-sm text-[#C0583A]">FOLIO</div>
+                  <div class="space-y-1 text-stone-600">
+                    <div class="font-bold text-[#221D18]">Catálogo de Vasos</div>
+                    <div>Calendário Lunar</div>
+                    <div>Consultoria Flora</div>
+                  </div>
+                </div>
+
+                <div class="col-span-9 space-y-2">
+                  <div class="flex justify-between items-center p-2 bg-white rounded-lg border border-[#DDD4C5]">
+                    <span class="font-fraunces font-bold text-xs">Coleção Botânica de Outono</span>
+                    <span class="text-[10px] text-stone-500">14 espécimes catalogados</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div class="p-2.5 rounded-lg bg-white border border-[#DDD4C5]">
+                      <div class="font-fraunces font-bold text-xs">Costela-de-adão</div>
+                      <div class="text-[10px] text-[#C0583A]">Rega em 2 dias • Terracota</div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-white border border-[#DDD4C5]">
+                      <div class="font-fraunces font-bold text-xs">Figueira Lira</div>
+                      <div class="text-[10px] text-[#859681]">Folhas limpas • Solo úmido</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RATIONALE & RISKS -->
+        <div class="p-4 rounded-2xl bg-white border border-[#DDD4C5] text-xs space-y-2">
+          <div class="font-serif text-[#C0583A] uppercase text-[10px]">Análise Estratégica do Designer</div>
+          <p class="text-stone-700"><strong>Linha de Raciocínio:</strong> Eleva o produto a um acessório de lifestyle e decoração. Perfeito para o público que consome arquitetura e design de interiores.</p>
+          <p class="text-rose-600"><strong>Principal Risco:</strong> Pode alienar o jardineiro iniciante que só quer saber rápido se a planta precisa de água sem poesia.</p>
+          <p class="text-[#374538]"><strong>Quando escolher:</strong> Se a estratégia da marca focar em parcerias com lojas de plantas nobres, ceramistas e público de alta renda urbana.</p>
+        </div>
+      </article>
+
+
+      <!-- ========================================================================= -->
+      <!-- DIRECTION 3: FRIENDLY & ORGANIC                                          -->
+      <!-- ========================================================================= -->
+      <article id="col-organic" class="direction-column bg-white text-stone-900 rounded-3xl p-6 sm:p-7 border border-emerald-100 shadow-xl space-y-12">
+        
+        <!-- Header & Core Rationale -->
+        <div class="space-y-3 border-b border-stone-200 pb-6">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-sans font-bold uppercase tracking-widest text-emerald-700 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200">
+              Direção 03 • Daily Sprout
+            </span>
+            <span class="text-xs text-stone-500 font-sans font-medium">Warm &amp; Habit</span>
+          </div>
+          <h4 class="text-2xl font-bold font-outfit text-stone-900 tracking-tight">
+            Friendly &amp; Organic
+          </h4>
+          <p class="text-xs text-stone-600 leading-relaxed font-jakarta">
+            <strong>Metáfora central:</strong> <em>"O ritmo alegre do cuidado diário"</em> — transformar a ansiedade de deixar plantas morrerem em um hábito leve e recompensador.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-2 text-[11px]">
+            <span class="bg-stone-100 px-2.5 py-1 rounded-md text-stone-700">Duolingo / Headspace vibe</span>
+            <span class="bg-stone-100 px-2.5 py-1 rounded-md text-stone-700">Formas orgânicas suaves</span>
+            <span class="bg-stone-100 px-2.5 py-1 rounded-md text-stone-700">Recompensa diária</span>
+          </div>
+        </div>
+
+        <!-- 1. IDENTIDADE: ÍCONE IOS, ANDROID, HOME SCREEN & WORDMARK -->
+        <div class="space-y-6">
+          <div class="text-xs font-sans font-bold text-emerald-700 uppercase tracking-wider flex items-center gap-2">
+            <span>01</span> • <span>Símbolo &amp; Companheiro Botânico</span>
+          </div>
+
+          <!-- Master App Icon 1024px & Adaptive -->
+          <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200 flex flex-col items-center justify-center gap-4">
+            <div class="relative group">
+              <svg class="w-32 h-32 squircle-ios shadow-xl transition-transform group-hover:scale-105 duration-300" viewBox="0 0 512 512" fill="none">
+                <!-- Rich Vibrant Juicy Emerald Gradient Base -->
+                <rect width="512" height="512" rx="114" fill="url(#organic-bg-grad)" />
+                <!-- Two Fluid Embracing Droplets Forming Smiling Sprout -->
+                <path d="M 256 120 C 320 120 370 170 370 240 C 370 320 290 380 256 400 C 222 380 142 320 142 240 C 142 170 192 120 256 120 Z" fill="#F0FDF4" />
+                <!-- Vibrant Sprout Leaf with Negative Space Droplet -->
+                <path d="M 256 180 C 290 180 320 210 320 250 C 320 300 270 330 256 340 C 242 330 192 300 192 250 C 192 210 222 180 256 180 Z" fill="#16A34A" />
+                <!-- Morning Sunbeam Droplet Sparkle -->
+                <circle cx="340" cy="160" r="26" fill="#FBBF24" />
+                <defs>
+                  <linearGradient id="organic-bg-grad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#16A34A" />
+                    <stop offset="1" stop-color="#15803D" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span class="text-[10px] text-stone-500 text-center block mt-2 font-sans font-medium">iOS Master (1024px Sprout Dew)</span>
+            </div>
+
+            <!-- Home Screen Context (60px) + Settings (29px) + Browser Tab Favicon -->
+            <div class="grid grid-cols-3 gap-3 w-full pt-3 border-t border-stone-200 text-center">
+              <div>
+                <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-50 border border-emerald-200 p-1 flex items-center justify-center shadow-xs">
+                  <div class="w-10 h-10 rounded-lg bg-[#16A34A] flex items-center justify-center text-white font-bold text-sm">
+                    🌱
+                  </div>
+                </div>
+                <span class="text-[10px] text-stone-600 mt-1 block">Home 60px</span>
+              </div>
+
+              <div>
+                <div class="w-8 h-8 mx-auto rounded-md bg-[#16A34A] flex items-center justify-center">
+                  <div class="w-2.5 h-2.5 rounded-full bg-white"></div>
+                </div>
+                <span class="text-[10px] text-stone-600 mt-1 block">Ajustes 29px</span>
+              </div>
+
+              <div>
+                <div class="h-8 bg-stone-100 rounded px-2 flex items-center gap-1.5 border border-stone-200 text-[10px] text-stone-700 truncate">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#16A34A]"></span>
+                  <span class="truncate">Brota • Cuidado</span>
+                </div>
+                <span class="text-[10px] text-stone-600 mt-1 block">Favicon 16/32px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wordmark & Lockups -->
+          <div class="space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
+            <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-emerald-800 block">Wordmark Amigável</span>
+            <div class="p-3 bg-white rounded-xl flex items-center justify-between border border-stone-200 shadow-2xs">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-emerald-100 flex items-center justify-center text-base">🌱</div>
+                <span class="font-outfit font-extrabold text-xl tracking-tight text-stone-900">brota<span class="text-amber-500 text-xs ml-0.5">●</span></span>
+              </div>
+              <span class="text-[10px] text-stone-400">Horizontal</span>
+            </div>
+          </div>
+
+          <!-- Color System (Light & Dark) -->
+          <div class="space-y-2">
+            <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-emerald-800 block">Paleta Solar &amp; Fresca</span>
+            <div class="grid grid-cols-5 gap-1.5 text-center text-[10px] font-mono">
+              <div class="p-2 rounded-lg bg-[#16A34A] text-white font-bold">
+                #16A34A
+                <span class="block font-sans text-[9px] opacity-80">Juicy Green</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#FBBF24] text-stone-950 font-bold">
+                #FBBF24
+                <span class="block font-sans text-[9px] opacity-80">Sunbeam</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#E6F7ED] border border-emerald-200 text-emerald-950 font-bold">
+                #E6F7ED
+                <span class="block font-sans text-[9px] opacity-80">Dew Pill</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#FB923C] text-white font-bold">
+                #FB923C
+                <span class="block font-sans text-[9px] opacity-80">Thirst</span>
+              </div>
+              <div class="p-2 rounded-lg bg-[#28211A] text-white font-bold">
+                #28211A
+                <span class="block font-sans text-[9px] opacity-80">Earth Soil</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typography Pairing -->
+          <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-2">
+            <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-emerald-800 block">Tipografia: Outfit + Plus Jakarta Sans</span>
+            <div class="space-y-1">
+              <div class="font-outfit text-xl font-bold tracking-tight text-stone-900">Costela-de-adão · Tudo perfeito hoje! ✨</div>
+              <p class="font-jakarta text-xs text-stone-600">Sua planta está com folhas lindas e hidratadas. Próxima rega em 2 dias.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. MOBILE APP (IPHONE FRAME) — 3 SCREENS -->
+        <div class="space-y-6 pt-4 border-t border-stone-200">
+          <div class="text-xs font-sans font-bold text-emerald-700 uppercase tracking-wider flex items-center justify-between">
+            <span>02 • Telas Mobile (iOS)</span>
+            <span class="text-[10px] text-stone-500">3 fluxos essenciais</span>
+          </div>
+
+          <!-- Screen A: Camera Scan -->
+          <div class="bg-stone-50 p-4 rounded-3xl border border-stone-200">
+            <span class="text-[11px] font-bold text-emerald-800 block mb-2">Tela A: Identificação Rápida &amp; Amigável</span>
+            <div class="w-full max-w-[280px] mx-auto bg-white rounded-[36px] p-3 text-stone-900 border-4 border-stone-200 shadow-xl space-y-3 relative overflow-hidden">
+              <div class="w-20 h-4 bg-stone-900 rounded-full mx-auto mb-2"></div>
+              
+              <div class="h-64 rounded-2xl bg-stone-100 relative overflow-hidden flex items-center justify-center border border-stone-200">
+                <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                <!-- Friendly Speech Bubble Overlay -->
+                <div class="absolute bottom-3 inset-x-3 bg-white p-3 rounded-2xl border border-emerald-100 shadow-md text-xs space-y-1">
+                  <div class="flex items-center gap-1.5 font-bold text-emerald-800">
+                    <span>🌱</span>
+                    <span>Reconhecemos sua plantinha!</span>
+                  </div>
+                  <div class="font-outfit font-bold text-sm text-stone-900">Costela-de-adão</div>
+                  <div class="text-[11px] text-stone-500">Super saudável e feliz.</div>
+                </div>
+              </div>
+
+              <div class="text-center py-1">
+                <button class="w-full py-2.5 rounded-xl bg-[#16A34A] text-white font-bold text-xs shadow-sm">
+                  Salvar no Meu Jardim ✨
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen B: Plant Detail Card -->
+          <div class="bg-stone-50 p-4 rounded-3xl border border-stone-200">
+            <span class="text-[11px] font-bold text-emerald-800 block mb-2">Tela B: Cartão de Cuidado &amp; Rega Diária</span>
+            <div class="w-full max-w-[280px] mx-auto bg-white rounded-[36px] p-3.5 text-stone-900 border-4 border-stone-200 shadow-xl space-y-3">
+              <div class="flex justify-between items-center text-xs text-stone-400">
+                <span>← Minhas Plantas</span>
+                <span class="text-emerald-700 font-bold">100% Saudável</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-stone-500 uppercase tracking-wide">Folhagem de Sala</span>
+                <h5 class="text-xl font-bold font-outfit text-stone-900">Costela-de-adão</h5>
+                <p class="text-xs text-stone-400 italic">Monstera deliciosa</p>
+              </div>
+
+              <div class="p-3 rounded-2xl bg-emerald-50 border border-emerald-100 space-y-1.5 text-xs text-emerald-950">
+                <div class="font-bold flex items-center gap-1">💧 Próxima rega em 2 dias</div>
+                <p class="text-[11px] text-stone-600">A terra ainda está úmida. Não precisa molhar hoje!</p>
+              </div>
+
+              <button class="w-full py-2.5 rounded-xl bg-stone-900 text-white font-bold text-xs">
+                Já Reguei Hoje 💧
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. WEB APP (1440PX DESKTOP FRAME) -->
+        <div class="space-y-4 pt-4 border-t border-stone-200">
+          <div class="text-xs font-sans font-bold text-emerald-700 uppercase tracking-wider">
+            <span>03 • Web App (Dashboard Descontraído)</span>
+          </div>
+
+          <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-2">
+            <span class="text-[11px] text-stone-500 block">Dashboard 1440px: Cards Flutuantes &amp; Chatbot Amigável</span>
+            <div class="desktop-frame bg-white border border-stone-200 text-stone-900 p-3 rounded-xl space-y-2.5">
+              <div class="flex items-center gap-2 border-b border-stone-100 pb-2">
+                <div class="flex gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                </div>
+                <div class="text-[10px] text-stone-400 bg-stone-50 px-3 py-0.5 rounded-md mx-auto">brota.app/minhas-plantas</div>
+              </div>
+
+              <div class="grid grid-cols-12 gap-2 text-xs">
+                <div class="col-span-3 bg-stone-50 p-2.5 rounded-lg border border-stone-200 space-y-2 font-medium text-[11px]">
+                  <div class="font-bold text-emerald-800 text-sm">🌱 Brota</div>
+                  <div class="space-y-1 text-stone-600">
+                    <div class="bg-white p-1 rounded shadow-2xs font-bold text-emerald-900">Meu Jardim (14)</div>
+                    <div class="p-1">Lembretes de Rega</div>
+                    <div class="p-1">Dra. Flora Chat</div>
+                  </div>
+                </div>
+
+                <div class="col-span-9 space-y-2">
+                  <div class="flex justify-between items-center bg-emerald-50/70 p-2 rounded-lg border border-emerald-100">
+                    <span class="font-outfit font-bold text-xs text-emerald-950">Bom dia! Você tem 2 regas para hoje.</span>
+                    <button class="bg-[#16A34A] text-white font-bold px-2 py-1 rounded text-[10px]">+ Adicionar Planta</button>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div class="p-2.5 rounded-lg bg-stone-50 border border-stone-200">
+                      <div class="font-bold text-xs">Costela-de-adão</div>
+                      <div class="text-[10px] text-emerald-700">Tudo em dia ✨</div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-stone-50 border border-stone-200">
+                      <div class="font-bold text-xs">Jiboia Dourada</div>
+                      <div class="text-[10px] text-amber-600">Precisa de água hoje 💧</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RATIONALE & RISKS -->
+        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 text-xs space-y-2">
+          <div class="font-sans font-bold text-emerald-700 uppercase text-[10px]">Análise Estratégica do Designer</div>
+          <p class="text-stone-700"><strong>Linha de Raciocínio:</strong> Elimina a culpa do usuário. Jardinagem é um hobby afetivo; transformar os cuidados em comemorações gera maior retenção no app.</p>
+          <p class="text-rose-600"><strong>Principal Risco:</strong> Se exagerar nos tons doces, pode parecer infantil ou pouco crível em diagnósticos botânicos botânicos complexos.</p>
+          <p class="text-stone-800"><strong>Quando escolher:</strong> Se a prioridade for engajamento diário de massa, adesão viral de iniciantes e foco na facilidade de uso.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- SECTION 3: SYSTEM CONSISTENCY ROW (CROSS-PLATFORM COMPONENTS) -->
+    <section id="section-systems" class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 space-y-6 shadow-sm">
+      <div class="border-b border-stone-200 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold text-stone-400 uppercase tracking-widest">Capítulo 02</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-stone-900">Consistência Transversal: Componentes UI Compartilhados</h3>
+        </div>
+        <p class="text-xs text-stone-500 max-w-md">Os mesmos componentes de design adaptam-se com precisão sem perder a identidade única em mobile e web.</p>
+      </div>
+
+      <!-- Comparative UI Component Matrix -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Tech Components -->
+        <div class="p-5 rounded-2xl bg-stone-950 text-white border border-stone-800 space-y-4">
+          <div class="text-xs font-mono text-emerald-400 font-bold uppercase">Modern Botanical Tech UI</div>
+          
+          <!-- Button -->
+          <div>
+            <span class="text-[10px] text-stone-400 block mb-1 font-mono">Botão de Ação Primária</span>
+            <button class="w-full py-2.5 rounded-xl bg-[#00F59B] hover:bg-[#00D686] text-stone-950 font-bold text-xs font-mono tracking-tight transition-all shadow-xs">
+              Escanear Folha [Esc]
+            </button>
+          </div>
+
+          <!-- Watering Chip -->
+          <div>
+            <span class="text-[10px] text-stone-400 block mb-1 font-mono">Chip de Estado de Rega</span>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#143322] border border-emerald-500/40 text-emerald-300 text-xs font-mono">
+              <span class="w-2 h-2 rounded-full bg-[#00F59B] animate-pulse"></span>
+              <span>Regar em 2 dias (62% úmido)</span>
+            </div>
+          </div>
+
+          <!-- Toast -->
+          <div>
+            <span class="text-[10px] text-stone-400 block mb-1 font-mono">Toast Feedback</span>
+            <div class="p-2.5 rounded-xl bg-stone-900 border border-emerald-500/30 text-xs flex items-center gap-2">
+              <span class="text-[#00F59B]">✓</span>
+              <span>Rega de <strong>Costela-de-adão</strong> gravada.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Urban Lifestyle Components -->
+        <div class="p-5 rounded-2xl bg-[#F6F2EB] text-[#221D18] border border-[#DDD4C5] space-y-4">
+          <div class="text-xs font-serif text-[#C0583A] font-bold uppercase">Urban Jungle UI</div>
+          
+          <!-- Button -->
+          <div>
+            <span class="text-[10px] text-stone-500 block mb-1 font-serif">Botão de Ação Primária</span>
+            <button class="w-full py-2.5 rounded-xl bg-[#C0583A] hover:bg-[#A84A30] text-white font-serif font-bold text-xs transition-all shadow-xs">
+              Registrar no Herbário
+            </button>
+          </div>
+
+          <!-- Watering Chip -->
+          <div>
+            <span class="text-[10px] text-stone-500 block mb-1 font-serif">Chip de Estado de Rega</span>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#DDD4C5] text-[#374538] text-xs font-serif">
+              <span>🏺</span>
+              <span>Substrato úmido • Rega Quinta</span>
+            </div>
+          </div>
+
+          <!-- Toast -->
+          <div>
+            <span class="text-[10px] text-stone-500 block mb-1 font-serif">Toast Feedback</span>
+            <div class="p-2.5 rounded-xl bg-white border border-[#DDD4C5] text-xs flex items-center gap-2 shadow-2xs font-serif">
+              <span class="text-[#C0583A]">🌿</span>
+              <span>Vaso 04 regado e catalogado.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Organic Friendly Components -->
+        <div class="p-5 rounded-2xl bg-stone-50 text-stone-900 border border-stone-200 space-y-4">
+          <div class="text-xs font-bold text-emerald-700 uppercase">Friendly Organic UI</div>
+          
+          <!-- Button -->
+          <div>
+            <span class="text-[10px] text-stone-400 block mb-1">Botão de Ação Primária</span>
+            <button class="w-full py-2.5 rounded-xl bg-[#16A34A] hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-xs">
+              Molhei Minha Planta! 💧
+            </button>
+          </div>
+
+          <!-- Watering Chip -->
+          <div>
+            <span class="text-[10px] text-stone-400 block mb-1">Chip de Estado de Rega</span>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-900 text-xs font-medium">
+              <span>✨</span>
+              <span>Tudo certo! Próxima rega em 2d</span>
+            </div>
+          </div>
+
+          <!-- Toast -->
+          <div>
+            <span class="text-[10px] text-stone-400 block mb-1">Toast Feedback</span>
+            <div class="p-2.5 rounded-xl bg-white border border-stone-200 text-xs flex items-center gap-2 shadow-2xs">
+              <span>🎉</span>
+              <span>Que maravilha! Sua planta agradece.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: FINAL OPINIONATED RECOMMENDATION -->
+    <section class="bg-gradient-to-br from-stone-900 via-stone-900 to-emerald-950 text-white rounded-3xl p-6 sm:p-10 border border-emerald-900/60 shadow-2xl relative overflow-hidden space-y-6">
+      <div class="max-w-4xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold font-mono">
+          <span>🏆 RECOMENDAÇÃO DEFINITIVA DO SENIOR DESIGNER</span>
+        </div>
+        <h3 class="text-2xl sm:text-4xl font-extrabold tracking-tight font-space text-white">
+          Combinação Recomendada: Direção 01 (Modern Botanical Tech) + Nome "Brota"
+        </h3>
+        <p class="text-sm sm:text-base text-stone-300 leading-relaxed font-jakarta">
+          Após analisar o ecossistema multiplataforma (iOS nativo + Web desktop responsivo), a <strong>Direção 01 ("Modern Botanical Tech") associada ao nome "Brota"</strong> é a combinação mais robusta e escalável pelas seguintes razões:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+            <div class="font-bold text-[#00F59B] text-sm font-space">1. Superioridade no Mobile</div>
+            <p class="text-stone-300">O scanner de visão computacional ganha credibilidade instantânea com os retículos de precisão óptica. Não parece um brinquedo nem um livro de receitas antigo.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+            <div class="font-bold text-[#00F59B] text-sm font-space">2. Força no Web Dashboard</div>
+            <p class="text-stone-300">O tema escuro refinado com acentos em clorofila cria uma das interfaces de software mais desejadas atualmente (padrão Linear/Flighty), ideal para uso prolongado em telas 1440px.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+            <div class="font-bold text-[#00F59B] text-sm font-space">3. Naming Imbatível</div>
+            <p class="text-stone-300">"Brota" é curto (5 letras), memorável, autêntico do português brasileiro, converte-se em verbo orgânico e soa como uma marca internacional premiada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-stone-900 border-t border-stone-800 text-stone-400 py-8 px-4 sm:px-8 text-center text-xs">
+    <div class="max-w-[1800px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>Brand Identity Exploration Canvas — Entregável de Design para Dr. Garden / Brota</div>
+      <div>Arquivado no repositório em <code>docs/branding/canvas.html</code></div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT PARA TROCA DINÂMICA DE VISUALIZAÇÃO NO CANVAS -->
+  <script>
+    function setViewMode(mode) {
+      const colTech = document.getElementById('col-tech');
+      const colUrban = document.getElementById('col-urban');
+      const colOrganic = document.getElementById('col-organic');
+      const container = document.getElementById('directions-container');
+
+      const btns = ['all', 'tech', 'urban', 'organic'];
+      btns.forEach(b => {
+        const btn = document.getElementById('btn-view-' + b);
+        if (b === mode) {
+          btn.className = 'px-3 py-1.5 rounded-lg font-medium transition-all bg-emerald-600 text-white shadow-xs';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg font-medium text-stone-300 hover:text-white transition-all';
+        }
+      });
+
+      if (mode === 'all') {
+        container.className = 'grid grid-cols-1 lg:grid-cols-3 gap-8';
+        colTech.classList.remove('hidden');
+        colUrban.classList.remove('hidden');
+        colOrganic.classList.remove('hidden');
+      } else if (mode === 'tech') {
+        container.className = 'grid grid-cols-1 max-w-4xl mx-auto gap-8';
+        colTech.classList.remove('hidden');
+        colUrban.classList.add('hidden');
+        colOrganic.classList.add('hidden');
+      } else if (mode === 'urban') {
+        container.className = 'grid grid-cols-1 max-w-4xl mx-auto gap-8';
+        colTech.classList.add('hidden');
+        colUrban.classList.remove('hidden');
+        colOrganic.classList.add('hidden');
+      } else if (mode === 'organic') {
+        container.className = 'grid grid-cols-1 max-w-4xl mx-auto gap-8';
+        colTech.classList.add('hidden');
+        colUrban.classList.add('hidden');
+        colOrganic.classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
